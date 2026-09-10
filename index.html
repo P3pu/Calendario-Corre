@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Corrida SP: descubra as corridas gerenciadas pela norteMKT em São Paulo.">
+  <meta name="theme-color" content="#101d26">
+  <title>Corrida SP — norteMKT</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #101d26;
+      --ink-soft: #34434c;
+      --paper: #f4f2ed;
+      --white: #fff;
+      --accent: #ff593d;
+      --accent-dark: #e63e25;
+      --lime: #d7f56c;
+      --line: rgba(16, 29, 38, .13);
+      --shadow: 0 22px 60px rgba(16, 29, 38, .12);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, a { font: inherit; }
+    button { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      position: absolute;
+      z-index: 10;
+      inset: 0 0 auto;
+      padding: 26px 0;
+      color: var(--white);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: inherit;
+      text-decoration: none;
+      font-family: "Manrope", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: rotate(-9deg);
+    }
+    .brand-mark svg { width: 19px; }
+    .brand span span { color: var(--lime); }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.82);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+    .nav-link:hover { color: var(--white); }
+
+    .hero {
+      position: relative;
+      min-height: 780px;
+      overflow: hidden;
+      color: var(--white);
+      background: radial-gradient(circle at 78% 11%, rgba(215,245,108,.16), transparent 24%), var(--ink);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 390px;
+      height: 390px;
+      left: -190px;
+      bottom: -110px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      box-shadow: 0 0 0 70px rgba(255,255,255,.025), 0 0 0 140px rgba(255,255,255,.018);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      align-items: center;
+      gap: 70px;
+      min-height: 780px;
+      padding: 132px 0 84px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 24px;
+      color: var(--lime);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 29px; height: 2px; background: currentColor; }
+    h1 {
+      max-width: 610px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(62px, 7vw, 102px);
+      line-height: .92;
+      letter-spacing: -.07em;
+    }
+    h1 em { color: var(--accent); font-style: normal; }
+    .hero-copy {
+      max-width: 475px;
+      margin: 30px 0 34px;
+      color: rgba(255,255,255,.7);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 18px 15px 22px;
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--lime);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .primary-button:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(215,245,108,.18); }
+    .button-icon {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--ink);
+    }
+    .hero-visual { position: relative; min-height: 530px; }
+    .hero-photo {
+      position: absolute;
+      overflow: hidden;
+      border: 7px solid var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-photo--main { inset: 0 0 62px 76px; border-radius: 180px 18px 150px 18px; transform: rotate(2deg); }
+    .hero-photo--main img { object-position: 51% center; }
+    .hero-photo--small {
+      z-index: 2;
+      width: 220px;
+      height: 270px;
+      left: 0;
+      bottom: 0;
+      border-radius: 18px 90px 18px 18px;
+      transform: rotate(-4deg);
+    }
+    .hero-photo--small img { object-position: 23% center; }
+    .events { position: relative; padding: 50px 0 120px; }
+    .campaign-banner {
+      overflow: hidden;
+      margin-bottom: 30px;
+      border-radius: var(--radius);
+      background: var(--ink);
+      box-shadow: 0 18px 48px rgba(16,29,38,.12);
+    }
+    .campaign-banner img {
+      width: 100%;
+      aspect-ratio: 1180 / 256;
+      object-fit: cover;
+      object-position: center;
+    }
+    .events-head { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 0; text-align: center; }
+    .section-kicker {
+      margin: 0 0 14px;
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h2 {
+      max-width: 640px;
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+    .events-head h2 {
+      max-width: none;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: clamp(24px, 2.8vw, 43px);
+      margin-top: 20px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+      letter-spacing: -.025em;
+      text-align: center;
+    }
+    .events-note { max-width: 300px; margin: 0 0 5px; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 16px 14px 20px;
+      margin-bottom: 30px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.48);
+    }
+    .filter-label { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-size: 13px; font-weight: 600; }
+    .filter-label svg { width: 17px; }
+    .filters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .filter {
+      padding: 11px 17px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--ink-soft);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color .2s ease, background .2s ease, transform .2s ease;
+    }
+    .filter:hover { color: var(--ink); }
+    .filter:active { transform: scale(.97); }
+    .filter[aria-pressed="true"] { color: var(--white); background: var(--ink); }
+
+    .events-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+    .events-grid.single-result { grid-template-columns: minmax(0, 577px); }
+    .event-card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(16,29,38,.04);
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, opacity .25s ease;
+    }
+    .event-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .event-card.is-hiding { opacity: 0; transform: scale(.97); }
+    .event-card[hidden] { display: none; }
+    .card-media { position: relative; height: 345px; overflow: hidden; }
+    .card-media::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 46%;
+      background: linear-gradient(transparent, rgba(8,17,23,.67));
+    }
+    .card-media::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: linear-gradient(145deg, color-mix(in srgb, var(--card-accent, #ff593d) 25%, transparent), transparent 48%);
+      pointer-events: none;
+    }
+    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+    .event-card:hover .card-media img { transform: scale(1.045); }
+    .event-card[data-location="vila-lobos"] .card-media img { object-position: 45% center; }
+    .card-date {
+      position: absolute;
+      z-index: 2;
+      top: 20px;
+      right: 20px;
+      display: grid;
+      place-items: center;
+      min-width: 58px;
+      min-height: 64px;
+      padding: 8px;
+      border-radius: 16px;
+      color: var(--ink);
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(8,17,23,.2);
+      line-height: 1;
+    }
+    .card-date strong { font-family: "Manrope", sans-serif; font-size: 24px; letter-spacing: -.05em; }
+    .card-date span { margin-top: 4px; color: var(--accent-dark); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+    .card-location {
+      position: absolute;
+      z-index: 2;
+      left: 22px;
+      bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(9,20,27,.5);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .card-location svg { width: 14px; }
+    .card-body { padding: 27px 28px 29px; }
+    .card-meta { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+    .event-type { color: var(--accent-dark); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .event-status { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
+    .event-status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #74b83f;
+      box-shadow: 0 0 0 4px rgba(116,184,63,.13);
+    }
+    h3 {
+      min-height: 66px;
+      margin: 0 0 25px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(24px, 3vw, 31px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .managed-by { color: #758087; font-size: 12px; }
+    .managed-by strong { color: var(--ink); }
+    .details-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      border: 0;
+      color: var(--ink);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .details-button svg { width: 17px; transition: transform .2s ease; }
+    .details-button:hover svg { transform: translateX(3px); }
+    .result-count { margin: 20px 2px 0; color: #758087; font-size: 12px; }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-flow: dense;
+      gap: 22px;
+    }
+    .location-card {
+      position: relative;
+      min-height: 340px;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      border-radius: var(--radius);
+      color: var(--white);
+      background: var(--ink);
+      box-shadow: 0 1px 0 rgba(16,29,38,.05);
+      text-align: left;
+      cursor: pointer;
+      isolation: isolate;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+    }
+    .location-card--wide { grid-column: span 2; }
+    .location-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
+    .location-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(8,17,23,.04) 20%, rgba(8,17,23,.86) 100%),
+        linear-gradient(135deg, color-mix(in srgb, var(--location-accent) 44%, transparent), transparent 52%);
+    }
+    .location-card img {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .75s cubic-bezier(.2,.8,.2,1), filter .35s ease;
+    }
+    .location-card:hover img { transform: scale(1.055); filter: saturate(1.08); }
+    .location-card-content {
+      position: absolute;
+      inset: auto 0 0;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 27px;
+    }
+    .location-card-copy { min-width: 0; }
+    .location-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 11px;
+      color: rgba(255,255,255,.72);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .location-count::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--location-accent);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--location-accent) 24%, transparent);
+    }
+    .location-name {
+      display: block;
+      max-width: 430px;
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(24px, 2.8vw, 37px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+    .location-action {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 50%;
+      background: rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      transition: color .25s ease, background .25s ease, transform .25s ease;
+    }
+    .location-action svg { width: 20px; }
+    .location-card:hover .location-action { color: var(--ink); background: var(--location-accent); transform: rotate(-8deg); }
+
+    body.modal-open { overflow: hidden; }
+    .location-modal {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity .22s ease;
+    }
+    .location-modal[hidden] { display: none; }
+    .location-modal.is-open { opacity: 1; }
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,15,20,.74);
+      backdrop-filter: blur(9px);
+    }
+    .modal-dialog {
+      position: relative;
+      width: min(760px, 100%);
+      max-height: min(860px, calc(100vh - 48px));
+      overflow: auto;
+      border-radius: 30px;
+      background: var(--paper);
+      box-shadow: 0 30px 100px rgba(0,0,0,.35);
+      opacity: 0;
+      transform: translateY(24px) scale(.98);
+      transition: opacity .28s ease, transform .28s cubic-bezier(.2,.8,.2,1);
+    }
+    .location-modal.is-open .modal-dialog { opacity: 1; transform: translateY(0) scale(1); }
+    .modal-hero { position: relative; height: 260px; overflow: hidden; color: var(--white); background: var(--ink); }
+    .modal-hero > img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,17,23,.12), rgba(8,17,23,.9));
+    }
+    .modal-close {
+      position: absolute;
+      z-index: 2;
+      top: 20px;
+      right: 20px;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 50%;
+      color: var(--white);
+      background: rgba(8,17,23,.35);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .modal-close:hover { background: var(--accent); transform: rotate(7deg); }
+    .modal-close svg { width: 20px; }
+    .modal-heading { position: absolute; z-index: 1; inset: auto 34px 30px; }
+    .modal-kicker {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .modal-heading h3 { min-height: 0; margin: 0; color: var(--white); font-size: clamp(30px, 5vw, 45px); }
+    .modal-content { padding: 29px 34px 34px; }
+    .modal-intro { margin: 0 0 17px; color: var(--ink-soft); font-size: 13px; font-weight: 700; }
+    .modal-events { display: grid; gap: 11px; }
+    .modal-event {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 17px;
+      padding: 15px 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--white);
+    }
+    .modal-date {
+      display: grid;
+      place-items: center;
+      min-height: 59px;
+      border-radius: 14px;
+      color: var(--white);
+      background: var(--ink);
+      line-height: 1;
+    }
+    .modal-date strong { font-family: "Manrope", sans-serif; font-size: 22px; letter-spacing: -.05em; }
+    .modal-date span { margin-top: 3px; color: var(--lime); font-size: 9px; font-weight: 800; letter-spacing: .1em; }
+    .modal-event-copy { min-width: 0; }
+    .modal-event-name { display: block; font-family: "Manrope", sans-serif; font-size: 16px; font-weight: 800; line-height: 1.25; letter-spacing: -.025em; }
+    .modal-event-type { display: block; margin-top: 5px; color: #758087; font-size: 11px; }
+    .modal-register {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--lime);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: color .2s ease, background .2s ease, transform .2s ease;
+    }
+    .modal-register:hover { color: var(--white); background: var(--accent); transform: translateY(-2px); }
+
+    .site-footer { padding: 34px 0; color: rgba(255,255,255,.65); background: var(--ink); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: 12px; }
+    .footer-brand { color: var(--white); }
+    :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+
+    @media (max-width: 900px) {
+      .hero, .hero-grid { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; gap: 60px; padding: 150px 0 90px; }
+      .hero-copy { max-width: 570px; }
+      .hero-visual { min-height: 520px; }
+      .hero-photo--main { left: 100px; }
+      .events-head { align-items: center; flex-direction: column; }
+      .events-note { max-width: 500px; }
+      .events-grid { grid-template-columns: 1fr; }
+      .locations-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .location-card--wide { grid-column: span 1; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px, 1180px); }
+      .site-header { padding-top: 20px; }
+      .nav-link span { display: none; }
+      .hero-grid { padding-top: 125px; }
+      h1 { font-size: clamp(58px, 20vw, 80px); }
+      .hero-copy { font-size: 15px; }
+      .hero-visual { min-height: 395px; }
+      .hero-photo { border-width: 5px; }
+      .hero-photo--main { inset: 0 0 42px 42px; border-radius: 110px 14px 95px 14px; }
+      .hero-photo--small { width: 138px; height: 185px; }
+      .events { padding: 80px 0 85px; }
+      .campaign-banner { margin-bottom: 52px; border-radius: 18px; }
+      .campaign-banner img { min-height: 160px; aspect-ratio: auto; }
+      .events-head { margin-bottom: 30px; }
+      .filter-bar { align-items: stretch; flex-direction: column; padding: 15px; }
+      .filter-label { padding-left: 4px; }
+      .filters {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 2px 2px 7px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: thin;
+      }
+      .filter { flex: 0 0 auto; padding-inline: 14px; font-size: 12px; scroll-snap-align: start; }
+      .events-grid.single-result { grid-template-columns: 1fr; }
+      .card-media { height: 255px; }
+      .card-body { padding: 23px 21px 25px; }
+      h3 { min-height: auto; font-size: 25px; }
+      .card-footer { align-items: flex-start; flex-direction: column; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .locations-grid { grid-template-columns: 1fr; }
+      .location-card { min-height: 300px; }
+      .location-card-content { padding: 23px; }
+      .location-name { font-size: 28px; }
+      .location-modal { padding: 10px; }
+      .modal-dialog { max-height: calc(100vh - 20px); border-radius: 23px; }
+      .modal-hero { height: 220px; }
+      .modal-heading { inset: auto 23px 24px; }
+      .modal-content { padding: 23px; }
+      .modal-event { grid-template-columns: 57px minmax(0, 1fr); gap: 13px; padding: 13px; }
+      .modal-date { min-height: 55px; }
+      .modal-register { grid-column: 2; justify-self: start; padding: 9px 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="events" id="eventos" aria-labelledby="events-title">
+      <div class="container">
+        <div class="campaign-banner">
+          <img src="assets/banner-calendario-corre-original-hd.webp" alt="Calendário do Corre" fetchpriority="high">
+        </div>
+
+
+        <div class="locations-grid" id="locations-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <span class="brand footer-brand"><span>corrida<span>SP</span></span></span>
+      <span>Eventos esportivos gerenciados pela norteMKT</span>
+      <span>São Paulo · <span id="year"></span></span>
+    </div>
+  </footer>
+
+  <div class="location-modal" id="location-modal" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+      <div class="modal-hero">
+        <img id="modal-image" src="" alt="">
+        <div class="modal-hero-overlay"></div>
+        <button class="modal-close" type="button" data-modal-close aria-label="Fechar janela de eventos">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="modal-heading">
+          <span class="modal-kicker" id="modal-count"></span>
+          <h3 id="modal-title"></h3>
+        </div>
+      </div>
+      <div class="modal-content">
+        <p class="modal-intro">Próximas corridas neste local</p>
+        <div class="modal-events" id="modal-events"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const events = [
+      {
+        name: 'Dog Race — São Paulo', day: '12', month: 'SET', dateTime: '--09-12',
+        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida com pets',
+        url: 'https://www.runningland.com.br/dog-race-s-o-paulo-2026',
+        image: 'assets/dog-race-vila-lobos.png', imagePosition: '45% center', accent: '#78b64b',
+        alt: 'Pessoas correndo com seus cães em uma alameda arborizada'
+      },
+      {
+        name: 'Circuito das Estações — Primavera — São Paulo', day: '13', month: 'SET', dateTime: '--09-13',
+        location: 'Praça Charles Miller — Pacaembu', locationSlug: 'pacaembu', type: 'Circuito de rua',
+        url: 'https://www.runningland.com.br/circuito-das-estacoes-2026-primavera-s-o-paulo',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '62% center', accent: '#ff593d',
+        alt: 'Pelotão de corredores em uma avenida próxima ao Pacaembu'
+      },
+      {
+        name: 'Movimento pela Saúde — Drogaria São Paulo', day: '20', month: 'SET', dateTime: '--09-20',
+        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida de rua',
+        url: 'https://pay.ativo.com/evento/40321',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '27% center', accent: '#78b64b',
+        alt: 'Grupo diverso participando de uma corrida em São Paulo'
+      },
+      {
+        name: 'Super Humans — São Paulo', day: '20', month: 'SET', dateTime: '--09-20',
+        location: 'Praça Heróis da FEB', locationSlug: 'herois-feb', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/super-humans-s-o-paulo-2026',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '78% center', accent: '#35a8a0',
+        alt: 'Atletas correndo juntos em uma prova urbana'
+      },
+      {
+        name: 'Corrida do Pão — São Paulo', day: '27', month: 'SET', dateTime: '--09-27',
+        location: 'Ibirapuera', locationSlug: 'ibirapuera', type: 'Corrida de rua',
+        url: 'https://pay.ativo.com/evento/39817',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '35% center', accent: '#eab94f',
+        alt: 'Corredores em movimento durante uma prova em São Paulo'
+      },
+      {
+        name: 'Blue Line — São Paulo', day: '27', month: 'SET', dateTime: '--09-27',
+        location: 'Parque do Povo', locationSlug: 'parque-do-povo', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/blue-line-s-o-paulo-2026',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '55% center', accent: '#e16da9',
+        alt: 'Pelotão de atletas em uma corrida urbana'
+      },
+      {
+        name: 'Girl Power — São Paulo', day: '18', month: 'OUT', dateTime: '--10-18',
+        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/girl-power-s-o-paulo-etapa-2-2026',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '24% center', accent: '#78b64b',
+        alt: 'Mulheres e homens participando de uma corrida em São Paulo'
+      },
+      {
+        name: 'Smart Fit Run — São Paulo', day: '18', month: 'OUT', dateTime: '--10-18',
+        location: 'Parque da Independência', locationSlug: 'independencia', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/smart-fit-run-2026-s-o-paulo',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '50% center', accent: '#58a8d8',
+        alt: 'Atletas participando de uma corrida de rua em São Paulo'
+      },
+      {
+        name: 'Circuitinho — São Paulo', day: '24', month: 'OUT', dateTime: '--10-24',
+        location: 'Pista de Atletismo — Centro Olímpico', locationSlug: 'centro-olimpico', type: 'Evento esportivo',
+        url: 'https://www.runningland.com.br/circuitinho-das-estacoes-s-o-paulo-2026',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '72% center', accent: '#7d6bd1',
+        alt: 'Participantes em movimento durante um evento esportivo'
+      },
+      {
+        name: 'Eco Run Special Edition — São Paulo', day: '29', month: 'NOV', dateTime: '--11-29',
+        location: 'Parque da Independência', locationSlug: 'independencia', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/eco-run-totalenergies-s-o-paulo-2026',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '18% center', accent: '#58a8d8',
+        alt: 'Grupo de corredores em uma prova ao ar livre'
+      },
+      {
+        name: 'Circuito das Estações — Verão — São Paulo', day: '20', month: 'DEZ', dateTime: '--12-20',
+        location: 'Praça Charles Miller — Pacaembu', locationSlug: 'pacaembu', type: 'Circuito de rua',
+        url: 'https://www.runningland.com.br/circuito-das-estacoes-2026-ver-o-s-o-paulo',
+        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '64% center', accent: '#ff593d',
+        alt: 'Pelotão de corredores em uma avenida próxima ao Pacaembu'
+      }
+    ];
+
+    const arrowIcon = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const locations = [
+      {
+        slug: 'villa-lobos', name: 'Parque Villa Lobos', accent: '#d7f56c',
+        image: 'assets/parque-villa-lobos-hd.webp', imagePosition: 'center', layout: 'location-card--wide'
+      },
+      {
+        slug: 'pacaembu', name: 'Praça Charles Miller — Pacaembu', accent: '#ff674d',
+        image: 'assets/pacaembu-hd.webp', imagePosition: 'center', layout: ''
+      },
+      {
+        slug: 'independencia', name: 'Parque da Independência', accent: '#73c9f1',
+        image: 'assets/parque-independencia-hd.webp', imagePosition: 'center', layout: ''
+      },
+      {
+        slug: 'ibirapuera', name: 'Ibirapuera', accent: '#ffd46a',
+        image: 'assets/ibirapuera-hd.webp', imagePosition: 'center', layout: ''
+      },
+      {
+        slug: 'centro-olimpico', name: 'Pista de Atletismo — Centro Olímpico', accent: '#a993ff',
+        image: 'assets/centro-olimpico-hd.webp', imagePosition: 'center', layout: ''
+      },
+      {
+        slug: 'parque-do-povo', name: 'Parque do Povo', accent: '#ff91c3',
+        image: 'assets/parque-do-povo-hd.webp', imagePosition: 'center', layout: ''
+      },
+      {
+        slug: 'herois-feb', name: 'Praça Heróis da FEB', accent: '#69e0cf',
+        image: 'assets/praca-herois-feb-hd.webp', imagePosition: 'center', layout: 'location-card--wide'
+      }
+    ];
+
+    const locationsGrid = document.querySelector('#locations-grid');
+    const modal = document.querySelector('#location-modal');
+    const modalDialog = modal.querySelector('.modal-dialog');
+    const modalTitle = document.querySelector('#modal-title');
+    const modalCount = document.querySelector('#modal-count');
+    const modalImage = document.querySelector('#modal-image');
+    const modalEvents = document.querySelector('#modal-events');
+    const modalCloseButton = modal.querySelector('.modal-close');
+    let lastFocusedElement;
+    let closeTimer;
+
+    function createLocationCard(location) {
+      const eventCount = events.filter((event) => event.locationSlug === location.slug).length;
+      const eventLabel = eventCount === 1 ? '1 corrida' : `${eventCount} corridas`;
+      return `
+        <button class="location-card ${location.layout}" type="button" data-location-card="${location.slug}"
+          aria-label="Ver ${eventLabel} em ${location.name}" style="--location-accent: ${location.accent}">
+          <img src="${location.image}" alt="" loading="lazy" style="object-position: ${location.imagePosition}">
+          <span class="location-card-content">
+            <span class="location-card-copy">
+              <span class="location-count">${eventLabel}</span>
+              <span class="location-name">${location.name}</span>
+            </span>
+            <span class="location-action" aria-hidden="true">${arrowIcon}</span>
+          </span>
+        </button>`;
+    }
+
+    function createModalEvent(event) {
+      return `
+        <article class="modal-event">
+          <time class="modal-date" datetime="${event.dateTime}">
+            <strong>${event.day}</strong><span>${event.month}</span>
+          </time>
+          <div class="modal-event-copy">
+            <span class="modal-event-name">${event.name}</span>
+            <span class="modal-event-type">${event.type}</span>
+          </div>
+          <a class="modal-register" href="${event.url}" target="_blank" rel="noopener noreferrer"
+            aria-label="Inscreva-se em ${event.name}">Inscreva-se</a>
+        </article>`;
+    }
+
+    function openLocationModal(locationSlug) {
+      const location = locations.find((item) => item.slug === locationSlug);
+      const locationEvents = events.filter((event) => event.locationSlug === locationSlug);
+      if (!location) return;
+
+      clearTimeout(closeTimer);
+      lastFocusedElement = document.activeElement;
+      modalTitle.textContent = location.name;
+      modalCount.textContent = locationEvents.length === 1 ? '1 corrida neste local' : `${locationEvents.length} corridas neste local`;
+      modalImage.src = location.image;
+      modalImage.alt = `Corredores em ${location.name}`;
+      modalImage.style.objectPosition = location.imagePosition;
+      modalEvents.innerHTML = locationEvents.map(createModalEvent).join('');
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+      requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+        modalCloseButton.focus();
+      });
+    }
+
+    function closeLocationModal() {
+      modal.classList.remove('is-open');
+      document.body.classList.remove('modal-open');
+      closeTimer = window.setTimeout(() => {
+        modal.hidden = true;
+        modalImage.src = '';
+        if (lastFocusedElement) lastFocusedElement.focus();
+      }, 240);
+    }
+
+    locationsGrid.innerHTML = locations.map(createLocationCard).join('');
+
+    locationsGrid.addEventListener('click', (clickEvent) => {
+      const card = clickEvent.target.closest('[data-location-card]');
+      if (card) openLocationModal(card.dataset.locationCard);
+    });
+
+    modal.querySelectorAll('[data-modal-close]').forEach((control) => {
+      control.addEventListener('click', closeLocationModal);
+    });
+
+    document.addEventListener('keydown', (keyEvent) => {
+      if (modal.hidden) return;
+      if (keyEvent.key === 'Escape') closeLocationModal();
+      if (keyEvent.key === 'Tab') {
+        const focusable = modalDialog.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (keyEvent.shiftKey && document.activeElement === first) {
+          keyEvent.preventDefault();
+          last.focus();
+        } else if (!keyEvent.shiftKey && document.activeElement === last) {
+          keyEvent.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
