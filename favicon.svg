@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#101d26"/>
+  <!-- "C" em itálico no verde-limão do banner, com o ponto laranja da marca na abertura -->
+  <path d="M44.5 22.5A15 15 0 1 0 44.5 41.5" fill="none" stroke="#d7f56c" stroke-width="9" stroke-linecap="round" transform="skewX(-12) translate(7 0)"/>
+  <circle cx="48" cy="32" r="4" fill="#ff593d"/>
+</svg>

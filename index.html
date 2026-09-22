@@ -3,30 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Corrida SP: descubra as corridas gerenciadas pela norteMKT em São Paulo.">
+  <title>Calendário do Corre 2026 — Corridas de rua em São Paulo</title>
+  <meta name="description" content="Calendário do Corre 2026: corridas de rua em São Paulo organizadas por local — Villa Lobos, Ibirapuera, Pacaembu e mais. Veja as datas e inscreva-se.">
+  <link rel="canonical" href="https://calendariodocorre.com.br/">
   <meta name="theme-color" content="#101d26">
-  <title>Corrida SP — norteMKT</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Ícones: SVG para navegadores modernos; ICO e PNG para Safari, iOS e resultados do Google (scripts/build-icons.mjs). -->
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Prévia de link (WhatsApp, Facebook, LinkedIn, Telegram, X). Não aparece na página.
+       A imagem é gerada por scripts/build-social-image.mjs; URLs precisam ser absolutas. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Calendário do Corre">
+  <meta property="og:url" content="https://calendariodocorre.com.br/">
+  <meta property="og:title" content="Calendário do Corre 2026 — Corridas de rua em São Paulo">
+  <meta property="og:description" content="Datas e locais das próximas corridas de rua em São Paulo. Escolha o parque e faça sua inscrição.">
+  <meta property="og:image" content="https://calendariodocorre.com.br/assets/social/calendario-do-corre-2026.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Arte do Calendário do Corre com corredores em um parque e o texto Corridas de rua em São Paulo, temporada 2026">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Precarrega só o AVIF: navegadores sem suporte ignoram o preload e baixam o WebP do <picture>. -->
   <link
     rel="preload"
     as="image"
-    href="assets/banner-calendario-corre-1200.webp"
-    imagesrcset="assets/banner-calendario-corre-640.webp 640w, assets/banner-calendario-corre-800.webp 800w, assets/banner-calendario-corre-1200.webp 1200w, assets/banner-calendario-corre-1800.webp 1800w, assets/banner-calendario-corre-2360.webp 2360w"
+    imagesrcset="assets/banner-calendario-corre-800.avif 800w, assets/banner-calendario-corre-1200.avif 1200w, assets/banner-calendario-corre-1800.avif 1800w, assets/banner-calendario-corre-2360.avif 2360w"
     imagesizes="(max-width: 620px) 740px, min(1180px, calc(100vw - 40px))"
-    type="image/webp"
+    type="image/avif"
     fetchpriority="high">
 
+  <script>
+    // Dados e regra de publicação são avaliados no head para descobrir a primeira imagem cedo.
+    const events = [
+      {
+        name: 'Dog Race — São Paulo', day: '12', month: 'SET', dateTime: '2026-09-12', status: 'ativo',
+        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida com pets',
+        url: 'https://www.runningland.com.br/dog-race-s-o-paulo-2026'
+      },
+      {
+        name: 'Circuito das Estações — Primavera — São Paulo', day: '13', month: 'SET', dateTime: '2026-09-13', status: 'ativo',
+        location: 'Praça Charles Miller — Pacaembu', locationSlug: 'pacaembu', type: 'Circuito de rua',
+        url: 'https://www.runningland.com.br/circuito-das-estacoes-2026-primavera-s-o-paulo'
+      },
+      {
+        name: 'Movimento pela Saúde — Drogaria São Paulo', day: '20', month: 'SET', dateTime: '2026-09-20', status: 'ativo',
+        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida de rua',
+        url: 'https://pay.ativo.com/evento/40321'
+      },
+      {
+        name: 'Super Humans — São Paulo', day: '20', month: 'SET', dateTime: '2026-09-20', status: 'ativo',
+        location: 'Praça Heróis da FEB', locationSlug: 'herois-feb', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/super-humans-s-o-paulo-2026'
+      },
+      {
+        name: 'Corrida do Pão — São Paulo', day: '27', month: 'SET', dateTime: '2026-09-27', status: 'encerrado',
+        location: 'Ibirapuera', locationSlug: 'ibirapuera', type: 'Corrida de rua',
+        url: 'https://pay.ativo.com/evento/40283'
+      },
+      {
+        name: 'Blue Line — São Paulo', day: '27', month: 'SET', dateTime: '2026-09-27', status: 'ativo',
+        location: 'Parque do Povo', locationSlug: 'parque-do-povo', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/blue-line-s-o-paulo-2026'
+      },
+      {
+        name: 'Girl Power — São Paulo', day: '18', month: 'OUT', dateTime: '2026-10-18', status: 'ativo',
+        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/girl-power-s-o-paulo-etapa-2-2026'
+      },
+      {
+        name: 'Smart Fit Run — São Paulo', day: '18', month: 'OUT', dateTime: '2026-10-18', status: 'ativo',
+        location: 'Parque da Independência', locationSlug: 'independencia', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/smart-fit-run-2026-s-o-paulo'
+      },
+      {
+        name: 'Circuitinho — São Paulo', day: '24', month: 'OUT', dateTime: '2026-10-24', status: 'ativo',
+        location: 'Pista de Atletismo — Centro Olímpico', locationSlug: 'centro-olimpico', type: 'Evento esportivo',
+        url: 'https://www.runningland.com.br/circuitinho-das-estacoes-s-o-paulo-2026'
+      },
+      {
+        name: 'Eco Run Special Edition — São Paulo', day: '29', month: 'NOV', dateTime: '2026-11-29', status: 'ativo',
+        location: 'Parque da Independência', locationSlug: 'independencia', type: 'Corrida de rua',
+        url: 'https://www.runningland.com.br/eco-run-totalenergies-s-o-paulo-2026'
+      },
+      {
+        name: 'Circuito das Estações — Verão — São Paulo', day: '20', month: 'DEZ', dateTime: '2026-12-20', status: 'ativo',
+        location: 'Praça Charles Miller — Pacaembu', locationSlug: 'pacaembu', type: 'Circuito de rua',
+        url: 'https://www.runningland.com.br/circuito-das-estacoes-2026-ver-o-s-o-paulo'
+      }
+    ];
+
+    // imageBase aponta para as variantes em assets/: <base>-<largura> (imagem inteira)
+    // e <base>-card-<largura> (recorte central 3:2). imageAlt descreve a foto exibida no modal.
+    const locations = [
+      {
+        slug: 'villa-lobos', name: 'Parque Villa Lobos', accent: '#d7f56c',
+        imageBase: 'assets/parque-villa-lobos', imagePosition: 'center', layout: 'location-card--wide',
+        imageAlt: 'Gramado arborizado com quiosques e uma grande cúpula de vidro, com prédios da cidade ao fundo'
+      },
+      {
+        slug: 'pacaembu', name: 'Praça Charles Miller — Pacaembu', accent: '#ff674d',
+        imageBase: 'assets/pacaembu', imagePosition: 'center', layout: '',
+        imageAlt: 'Pessoas se exercitando e correndo no gramado em frente à fachada do Estádio do Pacaembu'
+      },
+      {
+        slug: 'independencia', name: 'Parque da Independência', accent: '#73c9f1',
+        imageBase: 'assets/parque-independencia', imagePosition: 'center', layout: '',
+        imageAlt: 'Corredores na alameda cercada de palmeiras que leva ao Museu do Ipiranga'
+      },
+      {
+        slug: 'ibirapuera', name: 'Ibirapuera', accent: '#ffd46a',
+        imageBase: 'assets/ibirapuera', imagePosition: 'center', layout: '',
+        imageAlt: 'Lago cercado de árvores, com um obelisco à esquerda e prédios da cidade ao fundo'
+      },
+      {
+        slug: 'centro-olimpico', name: 'Pista de Atletismo — Centro Olímpico', accent: '#a993ff',
+        imageBase: 'assets/centro-olimpico', imagePosition: 'center', layout: '',
+        imageAlt: 'Atletas correndo em uma pista de atletismo vermelha, com arquibancada coberta ao fundo'
+      },
+      {
+        slug: 'parque-do-povo', name: 'Parque do Povo', accent: '#ff91c3',
+        imageBase: 'assets/parque-do-povo', imagePosition: 'center', layout: '',
+        imageAlt: 'Pessoas lendo, conversando e correndo em um gramado cercado por prédios altos'
+      },
+      {
+        slug: 'herois-feb', name: 'Praça Heróis da FEB', accent: '#69e0cf',
+        imageBase: 'assets/praca-herois-feb', imagePosition: 'center', layout: 'location-card--wide',
+        imageAlt: 'Corredores e ciclistas passando por uma praça com um avião de caça exposto como monumento'
+      }
+    ];
+
+    // Status ausentes ou desconhecidos ficam ocultos por segurança.
+    const PUBLIC_EVENT_STATUSES = new Set(['ativo', 'aberto', 'inscricoes_abertas']);
+
+    function normalizeEventStatus(status) {
+      return String(status || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim()
+        .toLowerCase()
+        .replace(/[\s-]+/g, '_');
+    }
+
+    function isEventPublished(event, referenceDate = new Date()) {
+      if (!PUBLIC_EVENT_STATUSES.has(normalizeEventStatus(event.status))) return false;
+
+      const eventEnd = new Date(`${event.dateTime}T23:59:59-03:00`);
+      return !Number.isNaN(eventEnd.getTime()) && eventEnd >= referenceDate;
+    }
+
+    const publishedEvents = events.filter((event) => isEventPublished(event));
+    const publishedLocations = locations.filter((location) =>
+      publishedEvents.some((event) => event.locationSlug === location.slug)
+    );
+
+    const firstLocation = publishedLocations[0];
+    if (firstLocation) {
+      const preload = document.createElement('link');
+      const isWide = firstLocation.layout === 'location-card--wide';
+      const mobileCardBase = `${firstLocation.imageBase}-card`;
+      const desktopCardBase = isWide ? firstLocation.imageBase : mobileCardBase;
+      const widths = isWide ? [800, 1200, 1560] : [520, 780, 1020];
+      const sizes = isWide ? '780px' : '(max-width: 620px) max(450px, calc(100vw - 28px)), 510px';
+      preload.rel = 'preload';
+      preload.as = 'image';
+      preload.type = 'image/avif';
+      preload.fetchPriority = 'high';
+      preload.imageSrcset = widths.map((width) => `${desktopCardBase}-${width}.avif ${width}w`).join(', ');
+      preload.imageSizes = sizes;
+      if (isWide) {
+        // O card largo usa recorte até 900px e imagem inteira no desktop.
+        preload.media = '(min-width: 901px)';
+        const mobilePreload = preload.cloneNode();
+        mobilePreload.media = '(max-width: 900px)';
+        mobilePreload.imageSrcset = [520, 780, 1020].map((width) => `${mobileCardBase}-${width}.avif ${width}w`).join(', ');
+        mobilePreload.imageSizes = '(max-width: 620px) max(450px, calc(100vw - 28px)), 510px';
+        document.head.append(mobilePreload);
+      }
+      document.head.append(preload);
+    }
+  </script>
+
   <style>
+    /* Fontes self-hosted (variáveis, subconjunto latin, que cobre o português). As faixas de peso
+       são as mesmas que o Google Fonts servia, para a renderização não mudar. Licença OFL em assets/fonts/. */
+    @font-face {
+      font-family: "DM Sans";
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url("assets/fonts/dm-sans-latin-variable.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Manrope";
+      font-style: normal;
+      font-weight: 600 800;
+      font-display: swap;
+      src: url("assets/fonts/manrope-latin-variable.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
     :root {
       --ink: #101d26;
       --ink-soft: #34434c;
       --paper: #f4f2ed;
       --white: #fff;
       --accent: #ff593d;
-      --accent-dark: #e63e25;
       --lime: #d7f56c;
       --line: rgba(16, 29, 38, .13);
       --shadow: 0 22px 60px rgba(16, 29, 38, .12);
@@ -46,15 +233,15 @@
     button { color: inherit; }
     img { display: block; max-width: 100%; }
     .container { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
-
-    .site-header {
-      position: absolute;
-      z-index: 10;
-      inset: 0 0 auto;
-      padding: 26px 0;
-      color: var(--white);
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+
     .brand {
       display: inline-flex;
       align-items: center;
@@ -66,307 +253,26 @@
       font-weight: 800;
       letter-spacing: -.04em;
     }
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--accent);
-      transform: rotate(-9deg);
-    }
-    .brand-mark svg { width: 19px; }
     .brand span span { color: var(--lime); }
-    .nav-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,.82);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      transition: color .2s ease;
-    }
-    .nav-link:hover { color: var(--white); }
 
-    .hero {
-      position: relative;
-      min-height: 780px;
-      overflow: hidden;
-      color: var(--white);
-      background: radial-gradient(circle at 78% 11%, rgba(215,245,108,.16), transparent 24%), var(--ink);
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 390px;
-      height: 390px;
-      left: -190px;
-      bottom: -110px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 50%;
-      box-shadow: 0 0 0 70px rgba(255,255,255,.025), 0 0 0 140px rgba(255,255,255,.018);
-    }
-    .hero-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      align-items: center;
-      gap: 70px;
-      min-height: 780px;
-      padding: 132px 0 84px;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 24px;
-      color: var(--lime);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    .eyebrow::before { content: ""; width: 29px; height: 2px; background: currentColor; }
-    h1 {
-      max-width: 610px;
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(62px, 7vw, 102px);
-      line-height: .92;
-      letter-spacing: -.07em;
-    }
-    h1 em { color: var(--accent); font-style: normal; }
-    .hero-copy {
-      max-width: 475px;
-      margin: 30px 0 34px;
-      color: rgba(255,255,255,.7);
-      font-size: 17px;
-      line-height: 1.65;
-    }
-    .primary-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      padding: 15px 18px 15px 22px;
-      border-radius: 999px;
-      color: var(--ink);
-      background: var(--lime);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .primary-button:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(215,245,108,.18); }
-    .button-icon {
-      display: grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      color: var(--white);
-      background: var(--ink);
-    }
-    .hero-visual { position: relative; min-height: 530px; }
-    .hero-photo {
-      position: absolute;
-      overflow: hidden;
-      border: 7px solid var(--ink);
-      box-shadow: var(--shadow);
-    }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-photo--main { inset: 0 0 62px 76px; border-radius: 180px 18px 150px 18px; transform: rotate(2deg); }
-    .hero-photo--main img { object-position: 51% center; }
-    .hero-photo--small {
-      z-index: 2;
-      width: 220px;
-      height: 270px;
-      left: 0;
-      bottom: 0;
-      border-radius: 18px 90px 18px 18px;
-      transform: rotate(-4deg);
-    }
-    .hero-photo--small img { object-position: 23% center; }
     .events { position: relative; padding: 50px 0 120px; }
+    /* É o h1 da página: o nome acessível vem do alt do banner. */
     .campaign-banner {
       overflow: hidden;
-      margin-bottom: 30px;
+      margin: 0 0 30px;
       border-radius: var(--radius);
       background: var(--ink);
       box-shadow: 0 18px 48px rgba(16,29,38,.12);
     }
+    .campaign-banner picture { display: block; }
     .campaign-banner img {
       width: 100%;
+      /* Sem height:auto o atributo height vira altura fixa e anula o aspect-ratio (CLS + banner cortado). */
+      height: auto;
       aspect-ratio: 1180 / 256;
       object-fit: cover;
       object-position: center;
     }
-    .events-head { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 0; text-align: center; }
-    .section-kicker {
-      margin: 0 0 14px;
-      color: var(--accent-dark);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    h2 {
-      max-width: 640px;
-      margin: 0;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1;
-      letter-spacing: -.055em;
-    }
-    .events-head h2 {
-      max-width: none;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-style: italic;
-      font-weight: 900;
-      font-size: clamp(24px, 2.8vw, 43px);
-      margin-top: 20px;
-      margin-bottom: 20px;
-      line-height: 1.3;
-      letter-spacing: -.025em;
-      text-align: center;
-    }
-    .events-note { max-width: 300px; margin: 0 0 5px; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
-
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 14px 16px 14px 20px;
-      margin-bottom: 30px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.48);
-    }
-    .filter-label { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-size: 13px; font-weight: 600; }
-    .filter-label svg { width: 17px; }
-    .filters { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
-    .filter {
-      padding: 11px 17px;
-      border: 0;
-      border-radius: 999px;
-      color: var(--ink-soft);
-      background: transparent;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: color .2s ease, background .2s ease, transform .2s ease;
-    }
-    .filter:hover { color: var(--ink); }
-    .filter:active { transform: scale(.97); }
-    .filter[aria-pressed="true"] { color: var(--white); background: var(--ink); }
-
-    .events-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
-    .events-grid.single-result { grid-template-columns: minmax(0, 577px); }
-    .event-card {
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: 0 1px 0 rgba(16,29,38,.04);
-      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, opacity .25s ease;
-    }
-    .event-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
-    .event-card.is-hiding { opacity: 0; transform: scale(.97); }
-    .event-card[hidden] { display: none; }
-    .card-media { position: relative; height: 345px; overflow: hidden; }
-    .card-media::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 46%;
-      background: linear-gradient(transparent, rgba(8,17,23,.67));
-    }
-    .card-media::before {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-      background: linear-gradient(145deg, color-mix(in srgb, var(--card-accent, #ff593d) 25%, transparent), transparent 48%);
-      pointer-events: none;
-    }
-    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
-    .event-card:hover .card-media img { transform: scale(1.045); }
-    .event-card[data-location="vila-lobos"] .card-media img { object-position: 45% center; }
-    .card-date {
-      position: absolute;
-      z-index: 2;
-      top: 20px;
-      right: 20px;
-      display: grid;
-      place-items: center;
-      min-width: 58px;
-      min-height: 64px;
-      padding: 8px;
-      border-radius: 16px;
-      color: var(--ink);
-      background: var(--white);
-      box-shadow: 0 10px 30px rgba(8,17,23,.2);
-      line-height: 1;
-    }
-    .card-date strong { font-family: "Manrope", sans-serif; font-size: 24px; letter-spacing: -.05em; }
-    .card-date span { margin-top: 4px; color: var(--accent-dark); font-size: 10px; font-weight: 800; letter-spacing: .1em; }
-    .card-location {
-      position: absolute;
-      z-index: 2;
-      left: 22px;
-      bottom: 20px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 11px;
-      border: 1px solid rgba(255,255,255,.24);
-      border-radius: 999px;
-      color: var(--white);
-      background: rgba(9,20,27,.5);
-      backdrop-filter: blur(10px);
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .card-location svg { width: 14px; }
-    .card-body { padding: 27px 28px 29px; }
-    .card-meta { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
-    .event-type { color: var(--accent-dark); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-    .event-status { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft); font-size: 12px; font-weight: 600; }
-    .event-status::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #74b83f;
-      box-shadow: 0 0 0 4px rgba(116,184,63,.13);
-    }
-    h3 {
-      min-height: 66px;
-      margin: 0 0 25px;
-      font-family: "Manrope", sans-serif;
-      font-size: clamp(24px, 3vw, 31px);
-      line-height: 1.08;
-      letter-spacing: -.04em;
-    }
-    .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
-    .managed-by { color: #758087; font-size: 12px; }
-    .managed-by strong { color: var(--ink); }
-    .details-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0;
-      border: 0;
-      color: var(--ink);
-      background: transparent;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-    .details-button svg { width: 17px; transition: transform .2s ease; }
-    .details-button:hover svg { transform: translateX(3px); }
-    .result-count { margin: 20px 2px 0; color: #758087; font-size: 12px; }
 
     .locations-grid {
       display: grid;
@@ -410,6 +316,7 @@
       transition: transform .75s cubic-bezier(.2,.8,.2,1), filter .35s ease;
     }
     .location-card:hover img { transform: scale(1.055); filter: saturate(1.08); }
+    /* A faixa escura acompanha a altura do texto (1 a 3 linhas), garantindo contraste mesmo em fotos claras. */
     .location-card-content {
       position: absolute;
       inset: auto 0 0;
@@ -417,7 +324,8 @@
       align-items: end;
       justify-content: space-between;
       gap: 20px;
-      padding: 27px;
+      padding: 64px 27px 27px;
+      background: linear-gradient(180deg, rgba(8,17,23,0), rgba(8,17,23,.66) 32%, rgba(8,17,23,.72));
     }
     .location-card-copy { min-width: 0; }
     .location-count {
@@ -425,11 +333,12 @@
       align-items: center;
       gap: 7px;
       margin-bottom: 11px;
-      color: rgba(255,255,255,.72);
+      color: var(--white);
       font-size: 11px;
       font-weight: 800;
       letter-spacing: .1em;
       text-transform: uppercase;
+      text-shadow: 0 1px 3px rgba(8,17,23,.7);
     }
     .location-count::before {
       content: "";
@@ -462,6 +371,21 @@
     }
     .location-action svg { width: 20px; }
     .location-card:hover .location-action { color: var(--ink); background: var(--location-accent); transform: rotate(-8deg); }
+
+    .noscript-notice {
+      padding: 28px 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .noscript-notice h2 {
+      margin: 0 0 10px;
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      letter-spacing: -.03em;
+    }
+    .noscript-notice p { margin: 0; color: var(--ink-soft); line-height: 1.6; }
+    .noscript-notice a { color: var(--ink); font-weight: 700; }
 
     body.modal-open { overflow: hidden; }
     .location-modal {
@@ -496,11 +420,12 @@
     }
     .location-modal.is-open .modal-dialog { opacity: 1; transform: translateY(0) scale(1); }
     .modal-hero { position: relative; height: 260px; overflow: hidden; color: var(--white); background: var(--ink); }
-    .modal-hero > img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-hero > picture { display: block; height: 100%; }
+    .modal-hero > picture img { width: 100%; height: 100%; object-fit: cover; }
     .modal-hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(8,17,23,.12), rgba(8,17,23,.9));
+      background: linear-gradient(180deg, rgba(8,17,23,.2), rgba(8,17,23,.6) 40%, rgba(8,17,23,.92));
     }
     .modal-close {
       position: absolute;
@@ -531,8 +456,16 @@
       font-weight: 800;
       letter-spacing: .12em;
       text-transform: uppercase;
+      text-shadow: 0 1px 3px rgba(8,17,23,.7);
     }
-    .modal-heading h3 { min-height: 0; margin: 0; color: var(--white); font-size: clamp(30px, 5vw, 45px); }
+    .modal-heading h2 {
+      margin: 0;
+      color: var(--white);
+      font-family: "Manrope", sans-serif;
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
     .modal-content { padding: 29px 34px 34px; }
     .modal-intro { margin: 0 0 17px; color: var(--ink-soft); font-size: 13px; font-weight: 700; }
     .modal-events { display: grid; gap: 11px; }
@@ -559,7 +492,7 @@
     .modal-date span { margin-top: 3px; color: var(--lime); font-size: 9px; font-weight: 800; letter-spacing: .1em; }
     .modal-event-copy { min-width: 0; }
     .modal-event-name { display: block; font-family: "Manrope", sans-serif; font-size: 16px; font-weight: 800; line-height: 1.25; letter-spacing: -.025em; }
-    .modal-event-type { display: block; margin-top: 5px; color: #758087; font-size: 11px; }
+    .modal-event-type { display: block; margin-top: 5px; color: #5d6870; font-size: 11px; }
     .modal-register {
       display: inline-flex;
       align-items: center;
@@ -576,60 +509,28 @@
       cursor: pointer;
       transition: color .2s ease, background .2s ease, transform .2s ease;
     }
-    .modal-register:hover { color: var(--white); background: var(--accent); transform: translateY(-2px); }
+    .modal-register:hover { color: var(--ink); background: var(--accent); transform: translateY(-2px); }
 
     .site-footer { padding: 34px 0; color: rgba(255,255,255,.65); background: var(--ink); }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: 12px; }
     .footer-brand { color: var(--white); }
-    :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+    /* Contorno escuro sobre fundos claros; verde-limão só sobre a foto escura do modal. */
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+    .modal-hero :focus-visible { outline-color: var(--lime); }
 
     @media (max-width: 900px) {
-      .hero, .hero-grid { min-height: auto; }
-      .hero-grid { grid-template-columns: 1fr; gap: 60px; padding: 150px 0 90px; }
-      .hero-copy { max-width: 570px; }
-      .hero-visual { min-height: 520px; }
-      .hero-photo--main { left: 100px; }
-      .events-head { align-items: center; flex-direction: column; }
-      .events-note { max-width: 500px; }
-      .events-grid { grid-template-columns: 1fr; }
       .locations-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .location-card--wide { grid-column: span 1; }
     }
     @media (max-width: 620px) {
       .container { width: min(100% - 28px, 1180px); }
-      .site-header { padding-top: 20px; }
-      .nav-link span { display: none; }
-      .hero-grid { padding-top: 125px; }
-      h1 { font-size: clamp(58px, 20vw, 80px); }
-      .hero-copy { font-size: 15px; }
-      .hero-visual { min-height: 395px; }
-      .hero-photo { border-width: 5px; }
-      .hero-photo--main { inset: 0 0 42px 42px; border-radius: 110px 14px 95px 14px; }
-      .hero-photo--small { width: 138px; height: 185px; }
       .events { padding: 80px 0 85px; }
       .campaign-banner { margin-bottom: 52px; border-radius: 18px; }
       .campaign-banner img { min-height: 160px; aspect-ratio: auto; }
-      .events-head { margin-bottom: 30px; }
-      .filter-bar { align-items: stretch; flex-direction: column; padding: 15px; }
-      .filter-label { padding-left: 4px; }
-      .filters {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding: 2px 2px 7px;
-        scroll-snap-type: x proximity;
-        scrollbar-width: thin;
-      }
-      .filter { flex: 0 0 auto; padding-inline: 14px; font-size: 12px; scroll-snap-align: start; }
-      .events-grid.single-result { grid-template-columns: 1fr; }
-      .card-media { height: 255px; }
-      .card-body { padding: 23px 21px 25px; }
-      h3 { min-height: auto; font-size: 25px; }
-      .card-footer { align-items: flex-start; flex-direction: column; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
       .locations-grid { grid-template-columns: 1fr; }
       .location-card { min-height: 300px; }
-      .location-card-content { padding: 23px; }
+      .location-card-content { padding: 56px 23px 23px; }
       .location-name { font-size: 28px; }
       .location-modal { padding: 10px; }
       .modal-dialog { max-height: calc(100vh - 20px); border-radius: 23px; }
@@ -651,43 +552,54 @@
   <main>
     <section class="events" id="eventos" aria-labelledby="events-title">
       <div class="container">
-        <div class="campaign-banner">
-          <img
-            src="assets/banner-calendario-corre-1200.webp"
-            srcset="assets/banner-calendario-corre-640.webp 640w, assets/banner-calendario-corre-800.webp 800w, assets/banner-calendario-corre-1200.webp 1200w, assets/banner-calendario-corre-1800.webp 1800w, assets/banner-calendario-corre-2360.webp 2360w"
-            sizes="(max-width: 620px) 740px, min(1180px, calc(100vw - 40px))"
-            width="2360"
-            height="512"
-            alt="Calendário do Corre"
-            fetchpriority="high">
-        </div>
-
+        <h1 class="campaign-banner" id="events-title">
+          <picture>
+            <source
+              type="image/avif"
+              srcset="assets/banner-calendario-corre-800.avif 800w, assets/banner-calendario-corre-1200.avif 1200w, assets/banner-calendario-corre-1800.avif 1800w, assets/banner-calendario-corre-2360.avif 2360w"
+              sizes="(max-width: 620px) 740px, min(1180px, calc(100vw - 40px))">
+            <img
+              src="assets/banner-calendario-corre-1200.webp"
+              srcset="assets/banner-calendario-corre-800.webp 800w, assets/banner-calendario-corre-1200.webp 1200w, assets/banner-calendario-corre-1800.webp 1800w, assets/banner-calendario-corre-2360.webp 2360w"
+              sizes="(max-width: 620px) 740px, min(1180px, calc(100vw - 40px))"
+              width="1180"
+              height="256"
+              alt="Calendário do Corre"
+              fetchpriority="high">
+          </picture>
+        </h1>
 
         <div class="locations-grid" id="locations-grid"></div>
+        <noscript>
+          <div class="noscript-notice">
+            <h2>O calendário precisa de JavaScript</h2>
+            <p>
+              Ative o JavaScript no navegador para ver os locais e as datas das próximas corridas de 2026.
+              Enquanto isso, as inscrições estão disponíveis diretamente na
+              <a href="https://www.runningland.com.br/">Running Land</a> e na
+              <a href="https://www.ativo.com/">Ativo</a>.
+            </p>
+          </div>
+        </noscript>
       </div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner container">
-      <span class="brand footer-brand"><span>corrida<span>SP</span></span></span>
-      <span>Eventos esportivos gerenciados pela norteMKT</span>
-      <span>São Paulo · <span id="year"></span></span>
-    </div>
-  </footer>
 
   <div class="location-modal" id="location-modal" hidden>
     <div class="modal-backdrop" data-modal-close></div>
     <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
       <div class="modal-hero">
-        <img id="modal-image" src="" alt="">
+        <picture>
+          <source id="modal-image-avif" type="image/avif">
+          <img id="modal-image" alt="" width="1560" height="680">
+        </picture>
         <div class="modal-hero-overlay"></div>
         <button class="modal-close" type="button" data-modal-close aria-label="Fechar janela de eventos">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="modal-heading">
           <span class="modal-kicker" id="modal-count"></span>
-          <h3 id="modal-title"></h3>
+          <h2 id="modal-title"></h2>
         </div>
       </div>
       <div class="modal-content">
@@ -698,151 +610,44 @@
   </div>
 
   <script>
-    const events = [
-      {
-        name: 'Dog Race — São Paulo', day: '12', month: 'SET', dateTime: '2026-09-12', status: 'ativo',
-        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida com pets',
-        url: 'https://www.runningland.com.br/dog-race-s-o-paulo-2026',
-        image: 'assets/dog-race-vila-lobos.png', imagePosition: '45% center', accent: '#78b64b',
-        alt: 'Pessoas correndo com seus cães em uma alameda arborizada'
-      },
-      {
-        name: 'Circuito das Estações — Primavera — São Paulo', day: '13', month: 'SET', dateTime: '2026-09-13', status: 'ativo',
-        location: 'Praça Charles Miller — Pacaembu', locationSlug: 'pacaembu', type: 'Circuito de rua',
-        url: 'https://www.runningland.com.br/circuito-das-estacoes-2026-primavera-s-o-paulo',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '62% center', accent: '#ff593d',
-        alt: 'Pelotão de corredores em uma avenida próxima ao Pacaembu'
-      },
-      {
-        name: 'Movimento pela Saúde — Drogaria São Paulo', day: '20', month: 'SET', dateTime: '2026-09-20', status: 'ativo',
-        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida de rua',
-        url: 'https://pay.ativo.com/evento/40321',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '27% center', accent: '#78b64b',
-        alt: 'Grupo diverso participando de uma corrida em São Paulo'
-      },
-      {
-        name: 'Super Humans — São Paulo', day: '20', month: 'SET', dateTime: '2026-09-20', status: 'ativo',
-        location: 'Praça Heróis da FEB', locationSlug: 'herois-feb', type: 'Corrida de rua',
-        url: 'https://www.runningland.com.br/super-humans-s-o-paulo-2026',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '78% center', accent: '#35a8a0',
-        alt: 'Atletas correndo juntos em uma prova urbana'
-      },
-      {
-        name: 'Corrida do Pão — São Paulo', day: '27', month: 'SET', dateTime: '2026-09-27', status: 'ativo',
-        location: 'Ibirapuera', locationSlug: 'ibirapuera', type: 'Corrida de rua',
-        url: 'https://pay.ativo.com/evento/39817',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '35% center', accent: '#eab94f',
-        alt: 'Corredores em movimento durante uma prova em São Paulo'
-      },
-      {
-        name: 'Blue Line — São Paulo', day: '27', month: 'SET', dateTime: '2026-09-27', status: 'ativo',
-        location: 'Parque do Povo', locationSlug: 'parque-do-povo', type: 'Corrida de rua',
-        url: 'https://www.runningland.com.br/blue-line-s-o-paulo-2026',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '55% center', accent: '#e16da9',
-        alt: 'Pelotão de atletas em uma corrida urbana'
-      },
-      {
-        name: 'Girl Power — São Paulo', day: '18', month: 'OUT', dateTime: '2026-10-18', status: 'ativo',
-        location: 'Parque Villa Lobos', locationSlug: 'villa-lobos', type: 'Corrida de rua',
-        url: 'https://www.runningland.com.br/girl-power-s-o-paulo-etapa-2-2026',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '24% center', accent: '#78b64b',
-        alt: 'Mulheres e homens participando de uma corrida em São Paulo'
-      },
-      {
-        name: 'Smart Fit Run — São Paulo', day: '18', month: 'OUT', dateTime: '2026-10-18', status: 'ativo',
-        location: 'Parque da Independência', locationSlug: 'independencia', type: 'Corrida de rua',
-        url: 'https://www.runningland.com.br/smart-fit-run-2026-s-o-paulo',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '50% center', accent: '#58a8d8',
-        alt: 'Atletas participando de uma corrida de rua em São Paulo'
-      },
-      {
-        name: 'Circuitinho — São Paulo', day: '24', month: 'OUT', dateTime: '2026-10-24', status: 'ativo',
-        location: 'Pista de Atletismo — Centro Olímpico', locationSlug: 'centro-olimpico', type: 'Evento esportivo',
-        url: 'https://www.runningland.com.br/circuitinho-das-estacoes-s-o-paulo-2026',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '72% center', accent: '#7d6bd1',
-        alt: 'Participantes em movimento durante um evento esportivo'
-      },
-      {
-        name: 'Eco Run Special Edition — São Paulo', day: '29', month: 'NOV', dateTime: '2026-11-29', status: 'ativo',
-        location: 'Parque da Independência', locationSlug: 'independencia', type: 'Corrida de rua',
-        url: 'https://www.runningland.com.br/eco-run-totalenergies-s-o-paulo-2026',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '18% center', accent: '#58a8d8',
-        alt: 'Grupo de corredores em uma prova ao ar livre'
-      },
-      {
-        name: 'Circuito das Estações — Verão — São Paulo', day: '20', month: 'DEZ', dateTime: '2026-12-20', status: 'ativo',
-        location: 'Praça Charles Miller — Pacaembu', locationSlug: 'pacaembu', type: 'Circuito de rua',
-        url: 'https://www.runningland.com.br/circuito-das-estacoes-2026-ver-o-s-o-paulo',
-        image: 'assets/circuito-estacoes-pacaembu.png', imagePosition: '64% center', accent: '#ff593d',
-        alt: 'Pelotão de corredores em uma avenida próxima ao Pacaembu'
-      }
-    ];
-
-    // Contrato de publicação: somente estes status podem aparecer no site.
-    // Status ausentes ou desconhecidos ficam ocultos por segurança.
-    const PUBLIC_EVENT_STATUSES = new Set(['ativo', 'aberto', 'inscricoes_abertas']);
-
-    function normalizeEventStatus(status) {
-      return String(status || '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .trim()
-        .toLowerCase()
-        .replace(/[\s-]+/g, '_');
-    }
-
-    function isEventPublished(event, referenceDate = new Date()) {
-      if (!PUBLIC_EVENT_STATUSES.has(normalizeEventStatus(event.status))) return false;
-
-      const eventEnd = new Date(`${event.dateTime}T23:59:59-03:00`);
-      return !Number.isNaN(eventEnd.getTime()) && eventEnd >= referenceDate;
-    }
-
-    const publishedEvents = events.filter((event) => isEventPublished(event));
     const arrowIcon = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    const LOCATION_IMAGE_WIDTHS = [480, 800, 1200, 1560];
-    const STANDARD_CARD_SIZES = '(max-width: 620px) calc(100vw - 28px), (max-width: 900px) calc(50vw - 31px), min(378px, calc(33.333vw - 28px))';
-    const WIDE_CARD_SIZES = '(max-width: 620px) calc(100vw - 28px), (max-width: 900px) calc(50vw - 31px), min(778px, calc(66.667vw - 34px))';
+    // Variantes geradas por scripts/build-images.mjs (AVIF + WebP de cada largura).
+    const FULL_IMAGE_WIDTHS = [800, 1200, 1560];
+    const CARD_IMAGE_WIDTHS = [520, 780, 1020];
+    // Os cards têm altura fixa (340px; 300px até 620px) e usam object-fit: cover, então a
+    // largura necessária é max(largura do card, altura × proporção da imagem), não a largura do card.
+    const CARD_SIZES = '(max-width: 620px) max(450px, calc(100vw - 28px)), 510px';
+    const WIDE_CARD_SIZES = '780px';
+    const MODAL_SIZES = '(max-width: 620px) max(505px, calc(100vw - 20px)), (max-width: 808px) calc(100vw - 48px), 760px';
 
-    function createLocationImageSrcSet(image) {
-      const imageBase = image.replace(/-hd\.webp$/, '');
-      return LOCATION_IMAGE_WIDTHS.map((width) => `${imageBase}-${width}.webp ${width}w`).join(', ');
+    function createSrcSet(imageBase, widths, format) {
+      return widths.map((width) => `${imageBase}-${width}.${format} ${width}w`).join(', ');
     }
 
-    function getLocationImageSizes(location) {
-      return location.layout === 'location-card--wide' ? WIDE_CARD_SIZES : STANDARD_CARD_SIZES;
+    function createImageSources(imageBase, widths, sizes, media = '') {
+      const mediaAttribute = media ? ` media="${media}"` : '';
+      return ['avif', 'webp'].map((format) =>
+        `<source${mediaAttribute} type="image/${format}" srcset="${createSrcSet(imageBase, widths, format)}" sizes="${sizes}">`
+      ).join('');
     }
 
-    const locations = [
-      {
-        slug: 'villa-lobos', name: 'Parque Villa Lobos', accent: '#d7f56c',
-        image: 'assets/parque-villa-lobos-hd.webp', imagePosition: 'center', layout: 'location-card--wide'
-      },
-      {
-        slug: 'pacaembu', name: 'Praça Charles Miller — Pacaembu', accent: '#ff674d',
-        image: 'assets/pacaembu-hd.webp', imagePosition: 'center', layout: ''
-      },
-      {
-        slug: 'independencia', name: 'Parque da Independência', accent: '#73c9f1',
-        image: 'assets/parque-independencia-hd.webp', imagePosition: 'center', layout: ''
-      },
-      {
-        slug: 'ibirapuera', name: 'Ibirapuera', accent: '#ffd46a',
-        image: 'assets/ibirapuera-hd.webp', imagePosition: 'center', layout: ''
-      },
-      {
-        slug: 'centro-olimpico', name: 'Pista de Atletismo — Centro Olímpico', accent: '#a993ff',
-        image: 'assets/centro-olimpico-hd.webp', imagePosition: 'center', layout: ''
-      },
-      {
-        slug: 'parque-do-povo', name: 'Parque do Povo', accent: '#ff91c3',
-        image: 'assets/parque-do-povo-hd.webp', imagePosition: 'center', layout: ''
-      },
-      {
-        slug: 'herois-feb', name: 'Praça Heróis da FEB', accent: '#69e0cf',
-        image: 'assets/praca-herois-feb-hd.webp', imagePosition: 'center', layout: 'location-card--wide'
+    // Nos cards a foto é decorativa (alt vazio): o botão já é nomeado pelo texto visível.
+    function createLocationPicture(location, isFirstCard = false) {
+      // Prioriza o primeiro card publicado, mesmo quando os locais anteriores ficam sem eventos.
+      const loadingAttributes = isFirstCard ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+      const imgAttributes = `alt="" ${loadingAttributes} decoding="async" style="object-position: ${location.imagePosition}"`;
+      const cardImageBase = `${location.imageBase}-card`;
+
+      if (location.layout !== 'location-card--wide') {
+        return `<picture>${createImageSources(cardImageBase, CARD_IMAGE_WIDTHS, CARD_SIZES)}
+          <img src="${cardImageBase}-780.webp" width="1020" height="680" ${imgAttributes}></picture>`;
       }
-    ];
+
+      // O card largo só ocupa duas colunas acima de 900px; abaixo disso usa o recorte dos cards comuns.
+      return `<picture>${createImageSources(cardImageBase, CARD_IMAGE_WIDTHS, CARD_SIZES, '(max-width: 900px)')}
+        ${createImageSources(location.imageBase, FULL_IMAGE_WIDTHS, WIDE_CARD_SIZES)}
+        <img src="${location.imageBase}-1200.webp" width="1560" height="680" ${imgAttributes}></picture>`;
+    }
 
     const locationsGrid = document.querySelector('#locations-grid');
     const modal = document.querySelector('#location-modal');
@@ -850,20 +655,23 @@
     const modalTitle = document.querySelector('#modal-title');
     const modalCount = document.querySelector('#modal-count');
     const modalImage = document.querySelector('#modal-image');
+    const modalImageAvif = document.querySelector('#modal-image-avif');
     const modalEvents = document.querySelector('#modal-events');
     const modalCloseButton = modal.querySelector('.modal-close');
     let lastFocusedElement;
     let closeTimer;
+    let openFrame;
+    let isClosing = false;
 
-    function createLocationCard(location) {
+    function createLocationCard(location, index) {
       const eventCount = publishedEvents.filter((event) => event.locationSlug === location.slug).length;
       const eventLabel = eventCount === 1 ? '1 corrida' : `${eventCount} corridas`;
+      // Mantém a mesma sequência do texto visível: contagem seguida pelo nome do local.
       return `
         <button class="location-card ${location.layout}" type="button" data-location-card="${location.slug}"
-          aria-label="Ver ${eventLabel} em ${location.name}" style="--location-accent: ${location.accent}">
-          <img src="${location.image}" srcset="${createLocationImageSrcSet(location.image)}"
-            sizes="${getLocationImageSizes(location)}" width="1560" height="680" alt="" loading="lazy"
-            style="object-position: ${location.imagePosition}">
+          aria-haspopup="dialog" aria-label="${eventLabel} ${location.name}"
+          style="--location-accent: ${location.accent}">
+          ${createLocationPicture(location, index === 0)}
           <span class="location-card-content">
             <span class="location-card-copy">
               <span class="location-count">${eventLabel}</span>
@@ -874,19 +682,33 @@
         </button>`;
     }
 
+    function formatEventDate(event) {
+      // Meio-dia em Brasília evita que o fuso desloque a data para o dia anterior.
+      return new Date(`${event.dateTime}T12:00:00-03:00`)
+        .toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', timeZone: 'America/Sao_Paulo' });
+    }
+
     function createModalEvent(event) {
+      // "SET" abreviado é lido de forma ambígua por leitores de tela; a data por extenso fica oculta visualmente.
       return `
         <article class="modal-event">
           <time class="modal-date" datetime="${event.dateTime}">
-            <strong>${event.day}</strong><span>${event.month}</span>
+            <strong aria-hidden="true">${event.day}</strong><span aria-hidden="true">${event.month}</span>
+            <span class="visually-hidden">${formatEventDate(event)}</span>
           </time>
           <div class="modal-event-copy">
             <span class="modal-event-name">${event.name}</span>
             <span class="modal-event-type">${event.type}</span>
           </div>
           <a class="modal-register" href="${event.url}" target="_blank" rel="noopener noreferrer"
-            aria-label="Inscreva-se em ${event.name}">Inscreva-se</a>
+            aria-label="Inscreva-se em ${event.name} (abre em nova aba)">Inscreva-se</a>
         </article>`;
+    }
+
+    // Enquanto o modal está aberto, o resto da página fica inerte: sem foco por teclado
+    // e fora do alcance do cursor virtual de leitores de tela.
+    function setPageInert(isInert) {
+      document.querySelectorAll('main, .site-footer').forEach((region) => { region.inert = isInert; });
     }
 
     function openLocationModal(locationSlug) {
@@ -895,40 +717,46 @@
       if (!location) return;
 
       clearTimeout(closeTimer);
+      isClosing = false;
       lastFocusedElement = document.activeElement;
       modalTitle.textContent = location.name;
       modalCount.textContent = locationEvents.length === 1 ? '1 corrida neste local' : `${locationEvents.length} corridas neste local`;
-      modalImage.src = location.image;
-      modalImage.srcset = createLocationImageSrcSet(location.image);
-      modalImage.sizes = '(max-width: 760px) calc(100vw - 48px), 760px';
-      modalImage.width = 1560;
-      modalImage.height = 680;
-      modalImage.alt = `Corredores em ${location.name}`;
+      modalImageAvif.srcset = createSrcSet(location.imageBase, FULL_IMAGE_WIDTHS, 'avif');
+      modalImageAvif.sizes = MODAL_SIZES;
+      modalImage.src = `${location.imageBase}-1200.webp`;
+      modalImage.srcset = createSrcSet(location.imageBase, FULL_IMAGE_WIDTHS, 'webp');
+      modalImage.sizes = MODAL_SIZES;
+      modalImage.alt = location.imageAlt;
       modalImage.style.objectPosition = location.imagePosition;
       modalEvents.innerHTML = locationEvents.map(createModalEvent).join('');
       modal.hidden = false;
+      setPageInert(true);
       document.body.classList.add('modal-open');
-      requestAnimationFrame(() => {
+      openFrame = requestAnimationFrame(() => {
         modal.classList.add('is-open');
         modalCloseButton.focus();
       });
     }
 
     function closeLocationModal() {
+      // Fecha mesmo antes do primeiro frame da animação e ignora Esc repetido.
+      if (modal.hidden || isClosing) return;
+      isClosing = true;
+      cancelAnimationFrame(openFrame);
+
       modal.classList.remove('is-open');
       document.body.classList.remove('modal-open');
+      setPageInert(false);
       closeTimer = window.setTimeout(() => {
         modal.hidden = true;
-        modalImage.src = '';
+        modalImageAvif.srcset = '';
+        modalImageAvif.sizes = '';
+        modalImage.removeAttribute('src');
         modalImage.srcset = '';
         modalImage.sizes = '';
         if (lastFocusedElement) lastFocusedElement.focus();
       }, 240);
     }
-
-    const publishedLocations = locations.filter((location) =>
-      publishedEvents.some((event) => event.locationSlug === location.slug)
-    );
 
     locationsGrid.innerHTML = publishedLocations.map(createLocationCard).join('');
 
@@ -945,20 +773,30 @@
       if (modal.hidden) return;
       if (keyEvent.key === 'Escape') closeLocationModal();
       if (keyEvent.key === 'Tab') {
-        const focusable = modalDialog.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (keyEvent.shiftKey && document.activeElement === first) {
+        const focusable = [...modalDialog.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')];
+        const current = focusable.indexOf(document.activeElement);
+        // current === -1 cobre o foco no próprio diálogo (ex.: após clique em área não focável).
+        if (keyEvent.shiftKey && current <= 0) {
           keyEvent.preventDefault();
-          last.focus();
-        } else if (!keyEvent.shiftKey && document.activeElement === last) {
+          focusable[focusable.length - 1].focus();
+        } else if (!keyEvent.shiftKey && (current === -1 || current === focusable.length - 1)) {
           keyEvent.preventDefault();
-          first.focus();
+          focusable[0].focus();
         }
       }
     });
 
-    document.querySelector('#year').textContent = new Date().getFullYear();
   </script>
+
+  <!-- O footer vem depois do script que monta o grid: se viesse antes, o Chrome pode fazer o
+       layout dele logo abaixo do banner e depois empurrá-lo para baixo (CLS de até 0,8). -->
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <span class="brand footer-brand"><span>corrida<span>SP</span></span></span>
+      <span>Eventos esportivos gerenciados pela norteMKT</span>
+      <span>São Paulo · <span id="year">2026</span></span>
+    </div>
+  </footer>
+  <script>document.querySelector('#year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Molde da imagem social (1200x630). Renderizado por scripts/build-social-image.mjs. -->
+  <title>Imagem social — Calendário do Corre</title>
+  <style>
+    @font-face { font-family: "Manrope"; font-weight: 600 800; src: url("../assets/fonts/manrope-latin-variable.woff2") format("woff2"); }
+    @font-face { font-family: "DM Sans"; font-weight: 400 700; src: url("../assets/fonts/dm-sans-latin-variable.woff2") format("woff2"); }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { width: 1200px; height: 630px; overflow: hidden; }
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 1200px;
+      height: 630px;
+      padding: 0 48px;
+      color: #fff;
+      font-family: "DM Sans", sans-serif;
+      background: radial-gradient(circle at 90% 6%, rgba(215,245,108,.16), transparent 34%), #101d26;
+    }
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 28px;
+      color: #d7f56c;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .kicker::before { content: ""; width: 42px; height: 3px; background: currentColor; }
+    .banner { display: block; width: 1104px; height: 240px; object-fit: cover; border-radius: 26px; }
+    .footer { display: flex; align-items: baseline; justify-content: space-between; margin-top: 34px; }
+    .season { margin: 0; font-family: "Manrope", sans-serif; font-size: 54px; font-weight: 800; letter-spacing: -.045em; line-height: 1; }
+    .season em { color: #ff593d; font-style: normal; }
+    .domain { color: rgba(255,255,255,.72); font-size: 26px; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="kicker">Corridas de rua em São Paulo</p>
+    <img class="banner" src="../assets/banner-calendario-corre-2360.webp" alt="">
+    <div class="footer">
+      <p class="season">Temporada <em>2026</em></p>
+      <span class="domain">calendariodocorre.com.br</span>
+    </div>
+  </div>
+</body>
+</html>

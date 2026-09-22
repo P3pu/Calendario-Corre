@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://calendariodocorre.com.br/sitemap.xml
