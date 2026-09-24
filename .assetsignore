@@ -1,0 +1,9 @@
+# Publicar somente os arquivos estaticos do site.
+/*
+!/assets/
+!/index.html
+!/robots.txt
+!/sitemap.xml
+!/favicon.svg
+!/favicon.ico
+!/apple-touch-icon.png
